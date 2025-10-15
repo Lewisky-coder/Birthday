@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday!</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff, #ffe5ec);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        /* Navbar */
+        nav {
+            background: #ff6b81;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: #ffe5ec;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 4px 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: #ff6b81;
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        header {
+            margin-top: 30px;
+            color: #ff6b81;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #ff6b81;
+            margin-bottom: 15px;
+        }
+
+        /* Slideshow */
+        .slideshow-container {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .slide {
+            display: none;
+            animation: fade 1s ease-in-out;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0.4;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Music Button */
+        .music-btn {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background: #ff6b81;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 18px;
+            cursor: pointer;
+            font-size: 1em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+
+        .music-btn:hover {
+            background: #ff4f6d;
+            transform: scale(1.05);
+        }
+
+        /* Confetti Canvas */
+        #confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">🎉 Happy Birthday</div>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="active">Home</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="message.html">Message</a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <h1>🎉 HAPPY BIRTHDAY TO You Ndivhuwo M 🎂</h1>
+        <p style="font-size:1.2rem;">Today is all about celebrating the beauty of your life and soul 💖</p>
+    </header>
+
+    <!-- Birthday Message -->
+    <section class="section">
+        <h2>💌 My Birthday Wish for You</h2>
+        <p style="font-size:1.2rem;">
+            On this special day, I pray that God blesses you abundantly with joy, health, and peace.
+            May He guide your steps and fulfill your heart’s deepest desires.
+            <br><br>
+            "For I know the plans I have for you,” declares the Lord, “plans to prosper you and not to harm you,
+            plans to give you hope and a future." — <strong>Jeremiah 29:11</strong>
+        </p>
+    </section>
+
+    <!-- Slideshow -->
+    <section class="section">
+        <h2>🎞 Slideshow of the queen herself</h2>
+        <div class="slideshow-container">
+            <div class="slide"><img src="./Assets/1.jpg" alt="Slide 1"></div>
+            <div class="slide"><img src="./Assets/2.jpg" alt="Slide 2"></div>
+            <div class="slide"><img src="./Assets/3.jpg" alt="Slide 3"></div>
+            <div class="slide"><img src="./Assets/4.jpg" alt="Slide 4"></div>
+        </div>
+    </section>
+
+    <canvas id="confetti"></canvas>
+
+    <!-- Background Music -->
+    <audio id="bg-music" autoplay loop>
+        <source src="audio/happy-birthday.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+    </audio>
+
+    <button class="music-btn" onclick="toggleMusic()">🎵 Toggle Music</button>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Toggle music
+        function toggleMusic() {
+            const music = document.getElementById("bg-music");
+            music.paused ? music.play() : music.pause();
+        }
+
+        // Confetti animation
+        const confettiCanvas = document.getElementById("confetti");
+        const ctx = confettiCanvas.getContext("2d");
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+
+        const confettiPieces = Array.from({ length: 150 }).map(() => ({
+            x: Math.random() * confettiCanvas.width,
+            y: Math.random() * confettiCanvas.height - confettiCanvas.height,
+            r: Math.random() * 6 + 2,
+            d: Math.random() * 0.5 + 0.5,
+            color: `hsl(${Math.random() * 360}, 100%, 50%)`
+        }));
+
+        function drawConfetti() {
+            ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+            confettiPieces.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+            });
+            updateConfetti();
+        }
+
+        function updateConfetti() {
+            confettiPieces.forEach(p => {
+                p.y += p.d * 5;
+                if (p.y > confettiCanvas.height) {
+                    p.y = -10;
+                    p.x = Math.random() * confettiCanvas.width;
+                }
+            });
+        }
+
+        setInterval(drawConfetti, 20);
+
+        window.addEventListener("resize", () => {
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+        });
+
+        // Slideshow
+        let slideIndex = 0;
+        const slides = document.querySelectorAll(".slide");
+
+        function showSlides() {
+            slides.forEach(s => s.style.display = "none");
+            slideIndex++;
+            if (slideIndex > slides.length) slideIndex = 1;
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 3000);
+        }
+
+        showSlides();
+    </script>
+
+</body>
+
+</html>

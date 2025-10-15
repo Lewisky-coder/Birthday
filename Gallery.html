@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff, #ffe5ec);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* Navbar */
+        nav {
+            background: #ff6b81;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: #ffe5ec;
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: #ff6b81;
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        header {
+            margin: 25px 0;
+            color: #ff6b81;
+            font-size: 1.7em;
+            font-weight: 600;
+        }
+
+        /* Gallery Grid */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .card.show {
+            opacity: 1;
+            transform: translateY(0);
+            transition: 0.7s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        /* Music Button */
+        .music-btn {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background: #ff6b81;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 18px;
+            cursor: pointer;
+            font-size: 1em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+
+        .music-btn:hover {
+            background: #ff4f6d;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">🎉 Happy Birthday</div>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="gallery.html" class="active">Gallery</a>
+            <a href="message.html">Message</a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        📸 My Favorite Photos of uu🥹❤️
+    </header>
+
+    <!-- Gallery Cards -->
+    <section class="gallery">
+        <div class="card"><img src="./Assets/1.jpg" alt="Memory 1" loading="lazy"></div>
+        <div class="card"><img src="./Assets/2.jpg" alt="Memory 2" loading="lazy"></div>
+        <div class="card"><img src="./Assets/Ndivh3.jpg" alt="Memory 3" loading="lazy"></div>
+        <div class="card"><img src="./Assets/Ndivh4.jpg" alt="Memory 4" loading="lazy"></div>
+        <div class="card"><img src="./Assets/Ndivh2.jpg" alt="Memory 5" loading="lazy"></div>
+        <div class="card"><img src="./Assets/ndivh1.jpg" alt="Memory 6" loading="lazy"></div>
+    </section>
+
+    <!-- Background Music -->
+    <audio id="bg-music" autoplay loop>
+        <source src="audio/happy-birthday.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <button class="music-btn" onclick="toggleMusic()">🎵 Toggle Music</button>
+
+    <!-- JavaScript -->
+    <script>
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Music toggle
+        function toggleMusic() {
+            const music = document.getElementById("bg-music");
+            music.paused ? music.play() : music.pause();
+        }
+
+        // Fade-in cards
+        const cards = document.querySelectorAll(".card");
+        function revealCards() {
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 50) {
+                    card.classList.add("show");
+                }
+            });
+        }
+        window.addEventListener("scroll", revealCards);
+        window.addEventListener("load", revealCards);
+    </script>
+
+</body>
+
+</html>

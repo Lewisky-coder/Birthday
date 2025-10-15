@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Heartfelt Message</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffe5ec, #fff);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* Navbar */
+        nav {
+            background: #ff6b81;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffe5ec;
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: #ff6b81;
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        header {
+            margin-top: 30px;
+            color: #ff6b81;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+
+        .message {
+            max-width: 800px;
+            margin: 30px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        /* Music Button */
+        .music-btn {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background: #ff6b81;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 18px;
+            cursor: pointer;
+            font-size: 1em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+
+        .music-btn:hover {
+            background: #ff4f6d;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">💖 Birthday Message</div>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="message.html">My Message</a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        💌 My Heartfelt Message to You
+    </header>
+
+    <!-- Message -->
+    <section class="message">
+        <p id="typed-text"></p>
+    </section>
+
+    <!-- Background Music -->
+    <audio id="bg-music" autoplay loop>
+        <source src="audio/happy-birthday.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <button class="music-btn" onclick="toggleMusic()">🎵 Toggle Music</button>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Toggle music
+        function toggleMusic() {
+            const music = document.getElementById("bg-music");
+            music.paused ? music.play() : music.pause();
+        }
+
+        // Typewriter message
+        const text = `
+heyy Dear
+
+Listen — today isn’t just another day.  
+It’s your day. The day the world got lucky enough to have you walk in it.  
+And trust me, it’s a whole vibe. Its very unfair zwauri u even outshine your birthday ngalunako😭🥹❤️
+
+I love the late night calls venting about our past and present life🥹❤️, the way you be looking at me in class by sneaking/peaking — I like that a lot.  
+The fact that you get jealous when I’m with other girls🥹❤️  
+Uda hawe vhutshiloni hanga zwitovha Tshimangadzo, U are an Angel sent by the heavens directly to my life🥹u bring me happiness, joy and overwhelming feeling that comes with so much pure love🥹❤️
+
+i dont like it wen u dont acknoledge yourself too much abd doubting on your self tbh 😔 so i want to tell u that you are the type of peace that is irreplaceable in my heart ❤️🥹unique in all possible ways and u attractive❤️🥹
+i know thi that perfect guy a girl can dream of cause some of us have some missing attributes that ppl will be looking for in a relationship but i hope ha mind u n'gudisa uvha the type of guy u want to spend the rest of your life with 😔❤️🥹
+ 
+"For you created my inmost being; you knit me together in my mother’s womb." — Psalm 139:13  
+"The Lord bless you and keep you; the Lord make His face shine upon you and be gracious to you." — Numbers 6:24-25  
+
+Girl, you’re a masterpiece (my masterpiece). Every smile you give is a blessing❤️, every step you take is an inspiration.  
+I pray this year blesses you with more wins🥹❤️ , more laughter, more love — and a more healthy relationship🥹❤️  
+
+As you stand at this age, the last of your teens (hohuliwa shem 19 yeze yothe😹😭),
+I pray you walk forward with faith and courage❤.  
+“For I know the plans I have for you,” declares the Lord, “plans to prosper you and not to harm you, plans to give you hope and a future.”  
+May this promise be your anchor through storms and your joy through restful days.  
+May you always remember, “I can do all things through Christ who strengthens me” (Philippians 4:13).  
+
+Happy Birthday, queen 👑.  
+You deserve the world and more.  
+
+With all my admiration,  
+Happy born day Honey💖
+`;
+
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("typed-text").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+        typeWriter();
+    </script>
+
+</body>
+
+</html>
